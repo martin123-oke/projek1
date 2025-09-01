@@ -42,7 +42,10 @@ def step_by_step_expand(expr):
     steps.append(f"Hasil ekspansi: {expd}")
     return steps, expd
 
-
+@app.get("/")
+def home():
+    return {"message": "API berjalan"}
+    
 @app.post("/solve")
 async def solve_math(data: MathInput):
     expr = sp.sympify(data.expression)
@@ -65,3 +68,4 @@ async def solve_math(data: MathInput):
         "steps": steps,
         "result": str(result)
     }
+
